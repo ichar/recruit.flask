@@ -161,16 +161,3 @@ def create_app(config_name=DEFAULT_CONFIG):
         print_to(None, '--> app init')
 
     return app
-
-#from app import routes
-
-'''
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
-'''
-
-'''
-login_manager.unauthorized_handler
-def unauthorized():
-    return redirect(url_for('login_bp.login'))
-'''
