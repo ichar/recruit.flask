@@ -1,0 +1,21 @@
+
+<!-- Page Refresh mode & starter init -->
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  model = {{ model }};
+  root = '{{ root }}';
+  back = '{{ back }}';
+  baseURI = '{{ root }}{{ base }}';
+  loaderURI = '{{ loader|safe }}';
+  keywords = { {{ keywords|join(', ')|safe }} };
+
+  default_submit_mode = {{ default_submit_mode }};
+
+  $_init()
+
+});
+
+</script>

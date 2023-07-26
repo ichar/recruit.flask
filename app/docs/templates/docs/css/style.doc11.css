@@ -1,0 +1,79 @@
+
+#html-container  { 
+    display:inline-flex;
+    margin:0 auto;
+    padding:0;
+    font:normal 12px Arial;
+    width:100%;
+}
+
+.report-container { 
+    text-align: center;
+    width:100%;
+}
+
+.report {
+    height:auto;
+    margin-top: 20px;
+}
+
+.down {
+    writing-mode: sideways-lr; 
+    min-width: 35px;
+    text-align: center;
+    width: 35px;
+    padding: 10px !important;
+    line-height: 20px;
+}
+.up { max-height:80px; vertical-align:top; padding: 10px !important; }
+
+.title, .line, .placeholder { width:100%; text-align:center; }
+.caption, #report { width:60vw; text-align:center; }
+.caption table { width:100%; }
+.report table { width:60vw; }
+.report th, .report td { padding:5px; }
+.report th { font-weight:bold; font-size:1.2em; }
+
+.code, .c2 { padding:10px !important; }
+
+.pregion { white-space:normal; }
+th.pregion { text-align:center; } 
+td.pregion { text-align:left; }
+
+.top, .region_level0 { font-weight:bold; text-align:center !important;border:2px solid black; }
+
+.top { background-color:#eb8; }
+.region_level0 { background-color:#8e8; }
+
+.col {}
+th.region {}
+
+.c1 { white-space:nowrap;}
+.plan, .p1, .p2, .p3, .p4, .p7, .p16, .p17, .c5, .p19, .p21, .p22, .p23, .p24 { padding-left:7px !important; }
+.fact, .f1, .c1, .c3, .p14 { padding-left:18px !important; }
+.f1, .c2, .c4 { line-height: 18px !important; padding-right: 8px !important; max-width:36px; }
+.c2 { padding-left:12px !important; }
+.c4 { line-height: 18px !important; padding-right: 8px !important; padding-left: 4px !important; }
+ 
+img.state { width:20px; background-color:transparent; }
+
+.together { width:80px !important; }
+
+#report { margin-top:0px; margin-bottom:0px; }
+
+.line { padding-top:20px; }
+.placeholder { font-size:10px; }
+
+.report .row { display:revert; }
+
+h3.title { font-size:1.0em; font-weight:bold; }
+h4 { font-size:12px !important; font-style:italic; margin-right:20px; }
+
+.view-buttons { padding:20px; }
+
+@media print {
+    .caption { width:80vw !important; }
+    .report th { font-size:1.4em; }
+    .down { line-height: 36px; }
+    .region { font-size:1.2em !important; }
+}

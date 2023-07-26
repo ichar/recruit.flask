@@ -1,0 +1,523 @@
+
+{% from 'templates.html' import render_date, render_html_date, render_empty_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <div class="page">
+
+      <h2 class="print_mode">{{ print_mode }}-I</h2>
+      {# <img class="part0" src="/static/img/point.png"> #}
+
+      <table border="0">
+        <tr>
+          <td class="point col50"><img class="part1" src="/static/img/point.png"></td>
+          <td class="point col50"><img class="part2" src="/static/img/point.png"></td>
+        </tr>
+        <tr><td>
+
+          <div class="report">
+
+            <table id="report3" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td class="line bottom-border" colspan="2">
+                <span>{{ place }}</span>
+              </td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(наименование военного комиссариата, пункта отбора на военную службу по контракту)</span>  
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2">
+                <span>{{ location }}</span>
+              </td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(наименование субъекта Российской Федерации, населенного пункта)</span>
+              </td>
+            <tr>
+              <td colspan="2">
+                <h3 class="title">КАРТА ПРОФЕССИОНАЛЬНОГО<br>ПСИХОЛОГИЧЕСКОГО ОТБОРА</h3>
+              </td>
+            </tr><tr>
+              <td class="line head c1"><dt>Ф.И.О:</dt></td>
+              <td class="line data d1 bottom-border"><dd class="underline">{{ person.name }}</dd></td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">I. Общие сведения</h4>
+              </td>
+            </tr><tr>
+              <td class="line head c2"><dt>Дата рождения:</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ person.birthday }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Образование:</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ person.education }}</dd></td>
+            </tr><tr>
+              <td class="line head c2" colspan="2"><dt>Гражданская специальность и стаж работы:</dt></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Подготовка по ВУС:</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ person.vus }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Дополнительные сведения:</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ person.info }}</dd></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">III. Результаты психологического<br>обследования в военном комиссариате,<br>пункте отбора</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">V. Результаты социально-психологического<br>изучения и психологического<br>обследования на сборном пункте</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr>
+
+            </table>
+
+          </div>
+
+        </td><td>
+
+          <div class="report">
+
+            <table id="report4" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td colspan="2">
+                <h4 class="title">II. Результаты социально-психологического<br>изучения в военном комиссариате,<br>пункте отбора</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line c3" colspan="2"><span>Организаторские способности и особенности в общении:</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line c3" colspan="2"><span>Военно-профессиональная направленность:</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line c3" colspan="2"><span>Другие качества:</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">IV. Заключение о профессиональной<br>психологической пригодности при призыве<br>(поступлении) но военную службу</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border c3" colspan="2"><span>а) к обучению в военно-учебных заведениях {{ person.p1 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c3" colspan="2"><span>б) к подготовке и службе на воинских должностях:</span></td>
+            </tr><tr>
+              <td class="line bottom-border c4" colspan="2"><span>командных {{ person.p2 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c4" colspan="2"><span>специальных {{ person.p3 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c4" colspan="2"><span>водительских {{ person.p4 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c4" colspan="2"><span>технических {{ person.p5 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c4" colspan="2"><span>операторских {{ person.p6 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c3" colspan="2"><span>в) к военной службе по контракту {{ person.p7 }} кат.</span></td>
+            </tr><tr>
+              <td class="line bottom-border c3" colspan="2"><span>Рекомендации:</span></td>
+            </tr><tr>
+              <td class="line data d2 bottom-border" colspan="2"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(подпись, инициал имени, фамилия специалиста по профотбору)</span>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border sign" colspan="2"><label class="mp">М.П.</label><dd class="signer right">{{ person.signer }}</dd></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(подпись, инициалы имени, фамилия военного комиссара, начальника пункта сбора)</span>
+              </td>
+            </tr><tr>
+              <td class="line sign-date" colspan="2">{{ render_html_date(date_event) }}</td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">VI. Дополнительные сведения<br>о профессиональной психологической пригодности</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>Специалист по профотбору военного комиссариата</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border location" colspan="2"><dd class="underline">{{ person.location }}</dd></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(наименование субъекта Российской Федерации)</span>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(подпись, инициалы имени, фамилия)</span>
+              </td>
+            </tr><tr>
+              <td class="line sign-date" colspan="2">{{ render_html_date(date_event) }}</td>
+            </tr>
+            </table>
+
+          </div>
+          
+        </td>
+
+      </tr></table>
+
+    </div><div class="page page-break">
+
+      <h2 class="print_mode">{{ print_mode }}-II</h2>
+      {# <img class="part0" src="/static/img/point.png"> #}
+
+      <table border="0">
+        <tr>
+          <td class="point col50"><img class="part1" src="/static/img/point.png"></td>
+          <td class="point col50"><img class="part2" src="/static/img/point.png"></td>
+        </tr>
+        <tr><td>
+
+          <div class="report">
+
+            <table id="report5" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td colspan="2">
+                <h4 class="title">VII. Результаты профессионального<br>психологического отбора в воинских частях</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">IX. Результаты подготовки в учебной<br>воинской части (на рабочем месте)</h4>
+              </td>
+            </tr><tr>
+              <td class="line head c2" colspan="2"><dt>Подготовка по ВУС и на воинскую должность</dt></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Итоговая оценка</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Воинское звание</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Классная квалификация</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Командир роты войсковой части №</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line bottom-border left" colspan="2"><span>М.П.</span><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(воинское звание, подпись, инициалы имени, фамилия)</span>
+              </td>
+            </tr><tr>
+              <td class="line sign-date" colspan="2">{{ render_empty_date() }}</td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">X.Результаты служебной деятельности<br>в воинской части</h4>
+              </td>
+            </tr><tr>
+              <td class="line head c2" colspan="2"><dt>Наименование ВУС</dt></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Занимаемая должность и соответствие ей</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Воинское звание</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Классная квалификация</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Итоговая оценка по специальности</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line head c2"><dt>Начальник штаба войсковой части №</dt></td>
+              <td class="line data d2 bottom-border"><dd class="underline">{{ empty_line }}</dd></td>
+            </tr><tr>
+              <td class="line bottom-border left" colspan="2"><span>М.П.</span><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(воинское звание, подпись, инициалы имени, фамилия)</span>
+              </td>
+            </tr><tr>
+              <td class="line sign-date" colspan="2">{{ render_empty_date() }}</td>
+            </tr>
+            </table>
+
+          </div>
+
+        </td><td>
+
+          <div class="report">
+
+            <table id="report6" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td colspan="2">
+                <h4 class="title">VIII. Заключение о профессиональной<br>психологической пригодности<br>в воинских частях</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border c3" colspan="2"><span>1) на пункте приема пополнения</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(должность специалиста по профотбору воинской части)</span>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(воинское звание, подпись, инициалы имени, фамилия)</span>
+              </td>
+            </tr><tr>
+              <td class="line left" colspan="2">{{ render_empty_date() }}</td>
+            </tr><tr>
+              <td class="line bottom-border c3" colspan="2"><span>2) при отборе на военную службу по контракту</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(должность специалиста по профотбору воинской части)</span>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="placeholder" colspan="2">
+                <span>(воинское звание, подпись, инициалы имени, фамилия)</span>
+              </td>
+            </tr><tr>
+              <td class="line left" colspan="2">{{ render_empty_date() }}</td>
+            </tr><tr>
+              <td colspan="2">
+                <h4 class="title">XI. Другие сведения о профессиональной<br>психологической пригодности<br>и результатах служебной деятельности</h4>
+              </td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr><tr>
+              <td class="line bottom-border" colspan="2"><span>{{ empty_line }}</span></td>
+            </tr>
+            </table>
+
+          </div>
+          
+        </td>
+
+      </tr></table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc04">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+<style type="text/css">
+
+  {% include 'docs/css/style.doc04.css' %}
+  {% include 'docs/css/style.docs.css' %}
+
+</style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

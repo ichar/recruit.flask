@@ -1,0 +1,51 @@
+
+/*** CONTROLS WEB SKINS ***/
+
+.radiotype_button {
+    display: inline-flex;
+    margin-right: 10px;
+}
+.radiotype_button input[type=radio] {
+    display: none;
+}
+.radiotype_button label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0px 15px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    user-select: none;
+    max-width:860px;
+    line-height:32px;
+}
+ 
+/* Checked */
+.radiotype_button input[type=radio]:checked + label {
+    background: #ffe0a6;
+}
+ 
+/* Hover */
+.radiotype_button label:hover {
+    color: #666;
+}
+ 
+/* Disabled */
+.radiotype_button input[type=radio]:disabled + label {
+    background: #efefef;
+    color: #666;
+}
+
+@media screen and (min-width: 1920px) and (min-height: 1200px) {
+}
+
+@media screen and (max-width: 1600px) and (max-height: 900px) {
+    .radiotype_button label {
+        max-width:600px;
+    }
+}
+
+@media screen and (max-width: 1300px) and (max-height: 700px) {
+    .radiotype_button label {
+        max-width:initial;
+    }
+}

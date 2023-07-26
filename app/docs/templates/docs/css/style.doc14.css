@@ -1,0 +1,94 @@
+
+#html-container  { 
+    display:inline-flex;
+    margin:0 auto;
+    padding:0;
+    font:normal 12px Arial;
+    width:100%;
+}
+
+.report-container { 
+    text-align: center;
+    width:100%;
+}
+
+.report {
+    height:auto;
+    margin-top: 20px;
+}
+
+.down {
+    writing-mode: sideways-lr;
+    min-width: 40px;
+    text-align: center;
+    max-width: 40px;
+    padding: 10px !important;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;    
+}
+.up { max-height:80px; vertical-align:top; padding: 10px !important; white-space:nowrap; line-height: 20px; }
+
+.title, .line, .placeholder { width:100%; text-align:center; }
+.caption, #report { width:60vw; text-align:center; }
+.caption table { width:100%; }
+.report table { width:60vw; }
+.report th, .report td { padding:5px; }
+.report th { font-weight:normal; font-size:1.2em; }
+
+.item p {}
+
+.plan { padding-left: 10px !important; }
+.code, .c2 { padding:10px !important; }
+
+.plan { min-width:60px; }
+.p4, .p5, .p6, .p7 { min-width:60px; }
+.p4, .p6 { padding-left: 20px !important; }
+.p10, .p11, .p12 { padding-left: 10px !important; line-height:20px; }
+
+.x1, .x2 { padding-left: 40px !important; }
+
+.pregion { white-space:normal; }
+th.title { line-height:20px; }
+th.pregion { text-align:center; } 
+td.pregion { text-align:left; }
+
+.top, .region_level0 { font-weight:bold; text-align:center !important;border:2px solid black; }
+
+.top { background-color:#eb8; }
+.region_level0 { background-color:#8e8; }
+
+.col {}
+th.region {}
+
+th.p1, th.f1, th.c1 { padding-left: 25px !important; }
+th.c2 { padding-left: 16px !important; }
+th.p3 { padding-left: 28px !important; }
+th.f3 { padding-left: 24px !important; }
+th.c3 { padding-left: 28px !important; }
+th.p4 { padding-left: 33px !important; }
+th.f4 { padding-left: 20px !important; }
+th.c4 { padding-left: 25px !important; }
+
+img.state { width:20px; background-color:transparent; }
+
+.together { width:80px !important; }
+
+#report { margin-top:0px; margin-bottom:0px; }
+
+.line { padding-top:20px; }
+.placeholder { font-size:10px; }
+
+.report .row { display:revert; }
+
+h3.title { font-size:1.0em; font-weight:bold; }
+h4 { font-size:12px !important; font-style:italic; margin-right:20px; }
+
+.view-buttons { padding:20px; }
+
+@media print {
+    .caption { width:80vw !important; }
+    .report th { font-size:1.4em; line-height:20px !important; font-size:12pt; }
+    .down { line-height: 36px;  line-height:28px !important; }
+    .region { font-size:1.2em !important; }
+}

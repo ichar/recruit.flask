@@ -1,0 +1,119 @@
+
+{% from 'templates.html' import render_html_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">СВЕДЕНИЯ<br> о ходе подготовки граждан по специальност{{ title_end }} {{ specialities_title }} в {{ report_year }} году</h3>
+    <h4 class="right">по состоянию на  {{ period}} </h4>
+
+    <div class="report">
+
+      <table id="report" border="1">
+        <thead>
+          <tr>
+            <th class="item region" rowspan="4">Субъект РФ</th>
+            <th class="ptotal" colspan="32">Всего</th>
+          </tr><tr>
+            <th class="plan down" rowspan="3">Задание на подготовку в {{ report_year }} году</th>
+            <th class="p1 down" rowspan="3">Направлено</th>
+            <th class="p2 down" rowspan="3">Отчислено</th>
+            <th class="fact up" colspan="2">Обучается</th>
+            <th class="p3 down" rowspan="3">Подготовлено</th>
+            <th class="fact up" colspan="13">В том числе по весеннему призыву</th>
+            <th class="fact up" colspan="13">В том числе по осеннему призыву</th>
+          </tr><tr>
+            <th class="fact down" rowspan="2">всего</th>
+            <th class="f1 down" rowspan="2">в том числе сдали ВЭК но не сдали<br>ГИБДД</th>
+            <th class="p4 down" rowspan="2">задание на подготовку</th>
+            <th class="p5 down" rowspan="2">направлено</th>
+            <th class="p6 down" rowspan="2">отчислено</th>
+            <th class="fact up" colspan="2">Обучается</th>
+            <th class="p7 down" rowspan="2">подготовлено</th>
+            <th class="p8 down" rowspan="2">задание на отправку</th>
+            <th class="item up" colspan="2">в том числе</th>
+            <th class="p11 down" rowspan="2">Отправлено</th>
+            <th class="item" colspan="2">в том числе</th>
+            <th class="p15 down" rowspan="2">задание на подготовку</th>
+            <th class="p16 down" rowspan="2">направлено</th>
+            <th class="p17 down" rowspan="2">отчислено</th>
+            <th class="fact up" colspan="2">Обучается</th>
+            <th class="c5 down" rowspan="2">подготовлено</th>
+            <th class="p18 down" rowspan="2">задание на отправку</th>
+            <th class="item up" colspan="3">в том числе</th>
+            <th class="p21 down" rowspan="2">Отправлено</th>
+            <th class="item up" colspan="3">в том числе</th>
+          </tr><tr>
+            <th class="c1 down">всего</th>
+            <th class="c2 down">в том числе сдали ВЭК но<br>не сдали ГИБДД</th>
+            <th class="p9 down">ДОСААФ России</th>
+            <th class="p10 down">СПО</th>
+            <th class="p12 down">ДОСААФ России</th>
+            <th class="p13 down">СПО</th>
+            <th class="p14 down">Другие организации</th>
+            <th class="c3 down">всего</th>
+            <th class="c4 down">в том числе сдали ВЭК но<br>не сдали ГИБДД</th>
+            <th class="p19 down">ДОСААФ России</th>
+            <th class="p20 down">СПО</th>
+            <th class="p22 down">ДОСААФ России</th>
+            <th class="p23 down">СПО</th>
+            <th class="p24 down">Другие организации</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+              <tr class="row">
+              {% for col in cols %}
+                {% set value = row|attr(col) %}
+                {% set css = row.css %}
+                <td class="col {{ col }} {{ css }}">
+                  <span>{{ value }}</span>
+                </td>
+              {% endfor %}
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc12">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+  <style type="text/css">
+
+    {% include 'docs/css/style.doc12.css' %}
+    {% include 'docs/css/style.docs.css' %}
+
+  </style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

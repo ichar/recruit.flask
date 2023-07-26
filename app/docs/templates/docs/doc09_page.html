@@ -1,0 +1,99 @@
+
+{% from 'templates.html' import render_html_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">СВЕДЕНИЯ<br> о ходе отправки граждан, подготовленных по ВУС<br>{{ specialities_title }}</h3>
+    <h4 class="right">по состоянию на  {{ period}}</h4>
+
+    <div class="report">
+
+      <table id="report" border="1">
+        <thead>
+          <tr>
+            <th class="item" rowspan="3">Субъект РФ</th>
+            <th class="plan" colspan="4">Задание на отправку<br>{{ period }}</th>
+            <th class="fact" colspan="9">Отправлено</th>
+          </tr><tr>
+            <th class="ptotal" rowspan="2">Всего</th>
+            <th class="item" colspan="3">в том числе,</th>
+            <th class="ftotal" rowspan="2">Всего</th>
+            <th class="t11" rowspan="2">%</th>
+            <th class="t12" rowspan="2">+/-</th>
+            <th class="g10" colspan="6">в том числе,</th>
+          </tr><tr>
+            <th class="c1">образовательные<br>организации<br> ДОСААФ<br>России</th>
+            <th class="c2">образовательные<br>организации<br>СПО</th>
+            <th class="c3">другие организации</th>
+            <th class="c11">образовательные<br>организации<br>ДОСААФ<br>России</th>
+            <th class="t111">%</th>
+            <th class="c12">образовательные<br>организации<br>СПО</th>
+            <th class="t121">%</th>
+            <th class="c13">другие<br>организации</th>
+            <th class="t131">%</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+              <tr class="row">
+              {% for col in cols %}
+                {% set value = row|attr(col) %}
+                {% set css = row.css %}
+                <td class="col {{ col }} {{ css }}">
+                {% if value == 'down' %}
+                  <img class="state down" src="/static/img/down.png" alt="down">
+                {% elif value == 'up'  %}
+                  <img class="state up" src="/static/img/up.png" alt="up">
+                {% else %}
+                  <span>{{ value }}</span>
+                {% endif %}
+                </td>
+              {% endfor %}
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc10">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+  <style type="text/css">
+
+    {% include 'docs/css/style.doc10.css' %}
+    {% include 'docs/css/style.docs.css' %}
+
+  </style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

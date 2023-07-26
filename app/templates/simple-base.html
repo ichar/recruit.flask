@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+{% block html %}
+
+<html{% block html_attribs %}{% endblock html_attribs %}>
+
+  <!-- {{ os }} *** {{ platform }} *** {{ agent }} *** {{ browser }} -->
+
+  <head>
+    {% block head %}
+
+      <title>{% block title %}{{ title|default }}{% endblock title %}</title>
+
+      {% block metas %}
+
+        <meta charset="UTF-8">
+        <meta http-equiv="Cache-Control" content="must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+      {% endblock metas %}
+
+      {% block styles %}
+
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.checkboxes.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-editable-select.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='fonts/all.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-editable-select.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/searchPanes.dataTables.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/select.dataTables.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.dataTables.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/suneditor.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/query-builder.default.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.common.css') }}{{ vsc }}">
+
+      {% endblock styles %}
+
+      {% block page_styles %}{% endblock %}
+
+      {% block custom_styles %}
+
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/resource.css') }}">
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/js-crop.css') }}">
+
+      {%- if params_css -%}
+
+      <style>
+
+        #page-content {
+          {{ params_css.get('page_content_background') }}
+        }
+        div[data-id^='cardheader'] {
+          {{ params_css.get('card_header_background') }}
+        }
+        div[data-id^='cardbody'] {
+          {{ params_css.get('card_body_background') }}
+        }
+        div[data-id^='cardfooter'] {
+          {{ params_css.get('card_footer_background') }}
+        }
+
+      </style>
+
+      {%- endif -%}
+
+      {% endblock custom_styles %}
+
+      {% block scripts %}
+
+        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/moment.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='js/core.js') }}{{ vsc }}"></script>
+        <script src="{{ url_for('static', filename='js/common.js') }}{{ vsc }}"></script>
+        <script src="{{ url_for('static', filename='js/controls.js') }}{{ vsc }}"></script>
+        <script src="{{ url_for('static', filename='js/log.default.js') }}{{ vsc }}"></script>
+        <script src="{{ url_for('static', filename='js/db.controller.js') }}{{ vsc }}"></script>
+
+        <script src="{{ url_for('static', filename='js/shared_scripts/errors_handler.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/shared_scripts/ajaxHTML.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/menu.js') }}{{ vsc }}"></script>
+        <script src="{{ url_for('static', filename='js/errors/errors.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script> 
+
+      {% endblock scripts %}
+
+      {% block custom_scripts %}{% endblock custom_scripts %}
+
+    {% endblock head %}
+
+  </head>
+
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+
+  {% block body %}
+
+    {% block navbar %}{% endblock navbar %}
+
+    {% block content %}
+
+    <div class="wrapper" id="wrapper">
+
+      {% block sidebar %}{% endblock %}
+
+      <div id="page-content" class="page_content {% if is_hidden %}hidden{% endif %}">
+
+      {% block page_content %}{% endblock %}
+
+      </div>
+
+    </div>
+
+    {% endblock content %}
+
+    {% block dialogs %}{% endblock dialogs %}
+
+  {% endblock body %}
+
+{% block starter %}
+
+  {% include 'simple-init.html' %}
+
+{% endblock %}
+
+{% block final_scripts %}{% endblock %}
+
+</body>
+</html>
+
+{%- endblock html %}

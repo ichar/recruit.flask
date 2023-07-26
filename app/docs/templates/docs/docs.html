@@ -1,0 +1,21 @@
+{% extends 'simple-base.html' %}
+
+{% block custom_scripts %}
+
+  {% include 'docs/docs_page_starter.html' %}
+
+{% endblock %}
+
+{% block sidebar %}
+
+  {% include 'simple-sidebar.html' %}
+
+{% endblock %}
+
+{% block dialogs %}
+
+    {% include 'simple-error.html' %}
+    {% include 'modal_error.html' %}
+
+{% endblock %}
+

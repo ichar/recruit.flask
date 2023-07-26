@@ -1,0 +1,10 @@
+
+<script>
+    $('body').empty()
+    $.ajax({
+        url: '/auth/index',
+        success: function(data) {
+            $('body').append(data)
+        }
+    })
+</script>

@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>{% block title %}{{ title }}{% endblock title %}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resource.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/js-crop.css') }}">
+    <link href="{{ url_for('docs_bp.static', filename='css/style.{{ mode }}-body.css') }}{{ vsc }}" rel="stylesheet" type="text/css">
+
+</head><body>
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">ВЕДОМОСТЬ РЕЗУЛЬТАТОВ ПРОФЕССИОНАЛЬНОГО ОТБОРА</h3>
+
+    <div class="caption">
+
+    <table border="0">
+    <tr>
+      <td class="line bottom-border">
+        <span>
+          Определение профессиональной пригодности к подготовке по ВУС и военной службе на воинских должностях КОСВД {{ period}}
+        </span>
+      </td>
+    </tr><tr>
+      <td class="placeholder">
+        <span>(наименование мероприятия, период проведения)</span>
+      </td>
+    </tr><tr>
+      <td class="line bottom-border">
+        <span>{{ place }}</span>
+      </td>
+    </tr><tr>
+      <td class="placeholder">
+        <span>(место проведения)</span>
+      </td>
+    </tr>
+    </table>
+
+    </div>
+
+    <div class="report">
+
+    <table id="report" border="1">
+    <thead>
+    <tr>
+      <th class="np" rowspan="2">№ п/п</th>
+      <th class="person" rowspan="2">Фамилия, инициалы, дата рождения</th>
+      <th class="date" rowspan="2">Дата проведения обследования</th>
+      <th class="ippr" colspan="6">ИПППр и интерпретация для КОСВД</th>
+      <th class="c1" rowspan="2">Вид, род войск</th>
+      <th class="c2" rowspan="2">Воинская команда</th>
+      <th class="c3" rowspan="2">Наименование, код воинской должности и ВУС</th>
+    </tr><tr>
+      <th class="abc">К</th>
+      <th class="abc">С</th>
+      <th class="abc">О</th>
+      <th class="abc">В</th>
+      <th class="abc">Т</th>
+      <th class="abc">П</th>
+    </tr><tr>
+      <th class="nc">1</th>
+      <th class="nc">2</th>
+      <th class="nc">3</th>
+      <th class="nc">4</th>
+      <th class="nc">5</th>
+      <th class="nc">6</th>
+      <th class="nc">7</th>
+      <th class="nc">8</th>
+      <th class="nc">9</th>
+      <th class="nc">10</th>
+      <th class="nc">11</th>
+      <th class="nc">12</th>
+    </tr></thead><tbody>
+    {% for row in rows %}
+    <tr>
+      <td class="row">{{ loop.index }}</td>
+      <td class="row person">{{ row.person }}&nbsp;{{ row.birthday }}</td>
+      <td class="row">{{ row.date }}</td>
+      <td class="row">{{ row.K }}</td>
+      <td class="row">{{ row.C }}</td>
+      <td class="row">{{ row.O }}</td>
+      <td class="row">{{ row.B }}</td>
+      <td class="row">{{ row.T }}</td>
+      <td class="row">{{ row.P }}</td>
+      <td class="row">{{ row.kind }}</td>
+      <td class="row">{{ row.team }}</td>
+      <td class="row status">{{ row.status }}</td>
+    </tr>
+    {% endfor %}
+    </tbody></table>
+
+    </div>
+
+    <div class="caption">
+
+    <table border="0">
+    <tr>
+      <td class="line bottom-border">
+        <span>{{ empty_line }}</span>
+      </td>
+    </tr><tr>
+      <td class="placeholder">
+        <span>(наименование должности специалиста по профессиональному психологическому отбору, подпись, инициал имени и фамилия специалиста)</span>
+      <td>
+    </tr><tr></table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc01">
+    </form>
+
+  </div>
+
+</div>
+
+</body></html>
+

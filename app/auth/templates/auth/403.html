@@ -1,0 +1,31 @@
+{% extends "simple.html" %}
+
+{% block title %}Forbidden{% endblock %}
+
+{% block starter %}
+
+<script type="text/javascript">
+$(function() 
+{
+    if ($IS_FRAME)
+        return;
+
+    var control = $("#error");
+    var left = int(($_width('max') - control.width()) / 2);
+});
+</script> 
+
+{% endblock %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <div class="error" id="error">
+    
+      {#<h1>{{ message }}</h1>#}
+      <img src="{{ root }}static/img/403-error.png">
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+
+.page_content { padding:20px; }
+
+.page-container {
+	font-family: Arial;
+}
+
+.page-header div { display:inline-block; }
+
+.report-container div {
+	display:inline-block;
+}
+
+.report { 
+	vertical-align:top; 
+	padding-right:40px;
+}
+
+.caption {
+	font-size:bold;
+	font-size:1.0em;
+	width:100%;
+}
+
+.header {}
+
+.view-data-buttons { vertical-align:top; padding: 20px; }
+
+.view-data-params {
+	display:inline-flex;
+	margin-left:20px;
+	border:1px solid #888;
+	padding:20px;
+	margin:10px;
+}
+
+.params {
+	border: 1px solid black;
+	padding: 20px;
+}
+
+.params * { display:inline-block; }
+
+#report_params .caption { font-weight:bold; }
+
+.report-buttons { padding-top:10px; padding-bottom:10px; }
+
+input.field {
+	box-sizing: unset;
+	border:1px solid gray;
+	padding: 5px;
+}
+
+.radiofilter {
+    display:block;
+    list-style-type:none;
+    font-size:12px; 
+
+}
+
+#reporttype .label { max-width:40vw; }
+.label label { display:flex; }

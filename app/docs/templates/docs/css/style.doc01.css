@@ -1,0 +1,32 @@
+
+#html-container  { 
+    display:inline-flex;
+    margin:0 auto;
+    padding:0;
+    font:normal 12px Arial;
+    width:100%;
+}
+
+.report {
+    height:auto;
+    margin-top: 20px;
+}
+
+.caption, #report { width:100%; }
+
+.title, .line, .placeholder { width:100%; text-align:center; }
+.caption table { width:100%; }
+.report table { width:100%; }
+.report th, .report td { padding:5px; }
+.report th { font-weight:bold; }
+
+#report { margin-top:20px; margin-bottom:20px; }
+
+.line { padding-top:20px; }
+.placeholder { font-size:10px; }
+
+.person, .status { text-align:left; padding-left:10px !important; }
+
+.report .row { display:revert; }
+
+.view-buttons { padding:20px; }

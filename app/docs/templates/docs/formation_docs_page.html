@@ -1,0 +1,140 @@
+
+{% from 'templates.html' import render_selected_date, render_selected_combo, render_selected_checkboxes, render_tree_item %}
+
+<div class="page-container">
+
+  <h1> {{ g.maketext('Application Output Form Index') }}</h1>
+
+  {#<span>pagedir: {{ pagedir }}</span>#}
+
+  <hr>
+
+  <div class="report-container" id="report_container">
+
+    <div class="report">
+
+      <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+        <input type="hidden" id="page" name="page" value="{{ mode }}">
+
+        <div class="report-buttons view-data-buttons" id="report_buttons">
+
+          <h3 class="caption reporttype">Тип отчета:</h3>
+
+          <dd>
+            <ul class="radiofilter" id="reporttype">
+              {% for reporttype in reporttypes -%}
+              <li>
+                <div class="input radiotype_button">
+                  <input class="reporttype" {% if args['reporttype'] == reporttype[0] %}checked{% endif %} id="reporttype_{{ reporttype[0] }}" name="reporttype" type="radio" value="{{ reporttype[0] }}" onchange="javascript:MakeFilterSubmit(1);">
+                   <label for="reporttype_{{ reporttype[0] }}">{{ reporttype[1] }}</label>
+                </div>
+              </li>
+              {%- endfor %}
+            </ul>
+          </dd>
+
+        </div>
+
+        <div class="report-params" id="report_params">
+
+          <h3 class="caption">Параметры отчета:</h3>
+
+          <div class="params" id="params">
+
+            <div class="period">
+              <div class="param date">
+                <dt class="date_from"><span>Дата отчета c:</span></dt>
+                <dd>
+                  {{ render_selected_date('date_from', 'date_from', args['date_from'][1], 5) }}
+                </dd>
+              </div>
+
+              <div class="param date">
+                <dt class="date_to"><span>по:</span></dt>
+                <dd>
+                  {{ render_selected_date('date_to', 'date_to', args['date_to'][1], 5) }}
+                </dd>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="param person">
+              <dt class="item"><span>Призывник:</span></dt>
+              <dd>
+                {{ render_selected_combo(
+                  'person', 'person', persons, args['person_uid'], 'disabled', 'Призывник', ('uid', 'short_name'), 2) }}
+              </dd>
+            </div>
+
+            <br>
+
+            <div class="param speciality">
+              <dt class="item"><span>ВУС:</span></dt>
+              <div class="param speciality-box" id="speciality_root">
+                <dd>
+                {{ render_selected_checkboxes(
+                  'speciality', 'speciality_index', specialities, args['speciality_index'], 'disabled', '', ('index', 'number', 'title'), 3, '/') }}
+                </dd>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="param region">
+              <dt class="item"><span>Регионы:</span></dt>
+              <div class="param region region-root" id="region_root">
+                {%- for item in regions -%}
+                  {%- set id = item.index -%}
+                  {%- set uid = item.uid -%}
+                  {%- set level = item.level|int -%}
+                  {%- set name = item.name -%}
+                  {%- set is_disabled = level > -1 %}
+                  {%- if item.uid %}
+                  <dd class="tree-item">
+                  {{ render_tree_item(
+                    'region', 'region_index', item, args['region_index'], is_disabled and '+'or '-', '', ('index', 'name', 'uid'), 3, '/') }}
+                  </dd>
+                  {%- endif %}
+
+                  {%- if 1 in item.is_child -%}
+                <div class="region-box {% if is_disabled %} invisible {% endif %}" id ="region_{{ id }}_child">
+                  {%- endif -%}
+                  {%- if -1 in item.is_child -%}
+                </div>
+                  {%- endif -%}
+
+                {%- endfor -%}
+              </div>
+            </div>
+
+            <br>
+
+            <div class="report-buttons">
+              <button class="btn btn-secondary" id="make_report">{{ g.maketext('Make report') }}</button>
+            </div>
+
+          </div>
+        
+        </div>
+
+      </form>
+  
+    </div>
+
+  </div>
+
+<style type="text/css">
+
+  {% include 'docs/css/style.docs.css' %}
+  {% include 'docs/css/style.skins.web.css' %}
+
+</style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

@@ -1,0 +1,24 @@
+
+<!-- Page Refresh mode & starter init -->
+
+{% if is_refresh_mode_post %}
+
+  <script src="{{ url_for('docs_bp.static', filename='js/docs.default.js') }}{{ vsc }}"></script>
+  <script src="{{ url_for('docs_bp.static', filename='js/docs.js') }}{{ vsc }}"></script>
+
+{% endif %}
+
+<script type="text/javascript">
+
+  model = {{ model }};
+  root = '{{ root }}';
+  back = '{{ back }}';
+  baseURI = '{{ root }}{{ base }}';
+  loaderURI = '{{ loader|safe }}';
+  keywords = { {{ keywords|join(', ')|safe }} };
+
+  //alert('loaderURI:'+loaderURI);
+
+  default_submit_mode = {{ default_submit_mode or submit_mode }};
+
+</script>

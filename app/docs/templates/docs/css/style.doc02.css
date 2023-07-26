@@ -1,0 +1,49 @@
+
+.document { text-align:center; }
+
+.report {
+    padding:10px 30px 10px 10px; 
+}
+
+h4 { font-size: 14px !important; }
+
+.report_data { font-size:12px; line-height:1.0em; }
+.caption { width:70%; text-align:center; }
+.caption table { margin:10px; display:block; }
+.caption .line { white-space:nowrap; border:none; }
+
+#report { margin-top:20px; margin-bottom:20px; width:auto; }
+
+.d1 {}
+.d1 dd { width:40vw; text-align: center; }
+.c2 {}
+.d2 { min-width:10%; text-align: center; }
+.c3 {}
+.d3 { min-width:10%; text-align: center; }
+
+.space1 { min-width:30px; }
+
+.head { font-weight:bold; }
+.head dt { width:fit-content; }
+
+.report table { width:100%; margin:10px; border-collapse:collapse; }
+.row, .subgroup { padding:5px; }
+.report th { font-weight:bold; }
+
+.m1, .m2 { width:40px; text-align:center; }
+
+.marker { font-size:16px; }
+
+.np { width:40px; text-align:center;}
+.props { min-width:40vw; text-align:left; }
+.data { white-space:nowrap; }
+.head { padding:10px; }
+
+.subgroup { font-weight:bold; }
+
+.line { padding-top:20px; }
+.placeholder { font-size:10px; }
+
+.report .row { display:revert; }
+
+.view-buttons { padding:20px; }

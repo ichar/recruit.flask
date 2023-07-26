@@ -1,0 +1,142 @@
+{% include 'help_dialog.html' %}
+{% if current_user.has_role('admin') or current_user.has_role('spec_ppo') %}
+  <nav id="sidebar" data-anchor="{{ active_choice }}" data-ppo="check-testing">
+{% else %}
+  <nav id="sidebar" data-anchor="{{ active_choice }}" data-ppo="">
+{% endif %}
+  <div class="container d-flex h-100 flex-column">
+    <div class="row row-content">
+      <div class="nav-wrapper col-11" style="padding-left: 10px;">
+        <div class="menu">
+          <div class="sidebar-header">
+            <a>
+              <h3>{{ user }}</h3>
+              <h6>{{ place }}</h6>
+              <h3>Призывник ВС</h3>
+              <strong>ВС</strong>
+            </a>
+          </div>
+
+
+          <div class="list-group" id="sidebar-list">
+            <!-- <a href="/main" class="list-group-item a-pointer" style="display: flex;"> -->
+            {% if current_user.has_role('admin') or current_user.has_role('operator') %}
+            <a id="person_data" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/people-fill.svg"></i>
+              <p>Призывной ресурс</p>
+              <span><img class="sidebar-icon" src="/static/fonts/people-fill.svg"></span>
+            </a>
+            {% endif %}
+            <a id="form_data" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/files.svg"></i>
+              <p>Выходные отчетные формы</p>
+              <span><img class="sidebar-icon" src="/static/fonts/files.svg"></span>
+
+            </a>
+          </div>
+          <div class="list-group">
+            {% if current_user.has_role('admin') or current_user.has_role('spec_ppo') %}
+            <a id="dialog_testing" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/tests.png" style="width: 25px;"></i>
+              <p>Диалоговое тестирование</p>
+              <span><img class="sidebar-icon" src="/static/fonts/tests.png" style="width: 25px;"></span>
+            </a>
+            <a id="group_testing" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/mass-testing.svg" style="width: 25px;"></i>
+              <p>Групповое тестирование</p>
+              <span><img class="sidebar-icon" src="/static/fonts/mass-testing.svg" style="width: 25px;"></span>
+              <!-- <strong>ДТ</strong> -->
+            </a>
+            <a id="resource_data" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/archive.svg" style="width: 25px;"></i>
+              <p>Данные</p>
+              <span><img class="sidebar-icon" src="/static/fonts/archive.svg" style="width: 25px;"></span>
+            </a>
+            <a id="create_blank" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/file-earmark.svg"></i>
+              <p>Формирование бланков</p>
+              <span><img class="sidebar-icon" src="/static/fonts/file-earmark.svg"></span>
+              <!-- <strong>ФБ</strong> -->
+            </a>
+            <a id="create_buklet" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/journals.svg" style="width: 23px;"></i>
+              <p>Формирование буклетов</p>
+              <span><img class="sidebar-icon" src="/static/fonts/journals.svg" style="width: 23px;"></span>
+            </a>
+            <a id="handle_blank" class="list-group-item a-pointer"
+               style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/icon-testing.jpg"></i>
+              <p>Обработка бланков/анкет</p>
+              <span><img class="sidebar-icon" src="/static/fonts/icon-testing.jpg"></span>
+            </a>
+            {% endif %}
+            {% if current_user.has_role('admin') or current_user.has_role('vagsh') %}
+            <a id="get_maps" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon-png" src="/static/fonts/icons8-герб-россии-30.svg"
+                      style="vertical-align: middle;width: 30px;"></i>
+              <p>Картография</p>
+              <span><img class="sidebar-icon-png" src="/static/fonts/icons8-герб-россии-30.svg"
+                         style="vertical-align: middle;width: 30px;"></span>
+
+            </a>
+            <a id="get_stats" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon-png" src="/static/fonts/file-earmark-bar-graph-fill.svg"
+                      style="vertical-align: middle;width: 30px;"></i>
+              <p>Статистика</p>
+              <span><img class="sidebar-icon-png" src="/static/fonts/file-earmark-bar-graph-fill.svg"
+                         style="vertical-align: middle;width: 30px;"></span>
+            </a>
+            {% endif %}
+            <a id="get_help" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon-png" src="/static/fonts/help.svg"
+                      style="vertical-align: middle;width: 30px;"></i>
+              <p>Помощь</p>
+              <span><img class="sidebar-icon-png" src="/static/fonts/help.svg"
+                         style="vertical-align: middle;width: 30px;"></span>
+            </a>
+
+
+            <!-- <a id="get_listResults" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon-png"
+                      style="vertical-align: middle;width: 30px;"></i>
+              <p>Лист результатов</p>
+              <span><img class="sidebar-icon-png"
+                         style="vertical-align: middle;width: 30px;"></span>
+            </a> -->
+
+
+          </div>
+          {% if current_user.has_role('admin') %}
+            <div class="list-group">
+              <a id="admin_manager" href="/manager/admin_panel?previous_active_choise=admin_manager"
+                 class="list-group-item a-pointer"
+                 style="display: flex;">
+                <i><img class="sidebar-icon" src="/static/fonts/gear-fill.svg" style="vertical-align: middle;"></i>
+                <p style="word-wrap: break-word;">Управление</p>
+                <span><img class="sidebar-icon" src="/static/fonts/gear-fill.svg"
+                           style="vertical-align: middle;"></span>
+              </a>
+            </div>
+          {% endif %}
+          <div class="list-group" role="tablist">
+            <a href="/auth/logout" class="list-group-item a-pointer" style="display: flex;">
+              <i><img class="sidebar-icon" src="/static/fonts/door-closed-fill.svg" style="vertical-align: middle;"></i>
+              <p style="word-wrap: break-word;">Выход</p>
+              <span><img class="sidebar-icon" src="/static/fonts/door-closed-fill.svg" style="vertical-align: middle;"></span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="sidebar-nav col">
+        <button type="button" id="sidebarCollapse" class="btn btn-secondary btn-sm"
+                style="background: #8E977C; border-color: #fff;">
+          <span><img src="/static/fonts/justify.svg" style="filter: invert(100%);"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<script src="{{ url_for('static', filename='js/checking_tests/ajaxJSON.js') }}"></script>
+<script src="{{ url_for('static', filename='js/checking_tests/checking_tests.js') }}"></script>

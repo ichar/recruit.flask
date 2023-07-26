@@ -1,0 +1,12 @@
+-c requirements.txt
+alchemyjsonschema
+essential-generators
+mimesis
+packaging
+piptree
+pip-tools
+pyinstaller
+pytest-cov
+python-editor
+sqlacodegen
+Flask-Script

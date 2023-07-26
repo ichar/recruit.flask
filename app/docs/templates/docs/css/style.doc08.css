@@ -1,0 +1,53 @@
+
+#html-container  { 
+    display:inline-flex;
+    margin:0 auto;
+    padding:0;
+    font:normal 12px Arial;
+    width:100%;
+}
+
+.report-container { 
+    text-align: center;
+    width:80vw;
+}
+
+.report {
+    height:auto;
+    margin-top: 20px;
+}
+
+.title, .line, .placeholder { width:100%; text-align:center; }
+.caption, #report { width:60vw; text-align:center; }
+.caption table { width:100%; }
+.report table { width:60vw; }
+.report th, .report td { padding:5px; }
+.report th { font-weight:bold; }
+
+.code, .c2 { padding:10px !important; }
+
+.c0 { width:100px; min-width:100px; }
+.c1 {}
+.c2 {}
+.c3 {}
+.c4 {}
+.c5, .c6, .c7, .c8 { min-width:84px; }
+
+.c0, .c1 { text-align:left; }
+
+.together { width:80px !important; }
+
+#report { margin-top:0px; margin-bottom:0px; }
+
+.line { padding-top:20px; }
+.placeholder { font-size:10px; }
+
+.report .row { display:revert; }
+
+h3.title { font-size:1.0em; font-weight:bold; }
+
+.view-buttons { padding:20px; }
+
+@media print {
+    .caption { width:80vw !important; }
+}

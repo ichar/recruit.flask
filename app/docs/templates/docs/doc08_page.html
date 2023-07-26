@@ -1,0 +1,95 @@
+
+{% from 'templates.html' import render_html_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">СВЕДЕНИЯ О РАБОТЕ ПО ПРОФЕССИОНАЛЬНОМУ ПСИХОЛОГИЧЕСКОМУ ОТБОРУ</h3>
+
+    <div class="report">
+
+      <table id="report" border="1">
+        <thead>
+          <tr>
+            <th class="item" colspan="2" rowspan="2">Наименование сведений</th>
+            <th class="code" rowspan="2">Код</th>
+            <th class="total" rowspan="2">Всего</th>
+            <th class="inside" colspan="4">В том числе имеют категорию профпригодности</th>
+          </tr><tr>
+            <th class="p1">I</th>
+            <th class="p2">II</th>
+            <th class="p3">III</th>
+            <th class="p4">IV</th>
+          </tr><tr>
+            <th class="nc" colspan="2">1</th>
+            <th class="nc">2</th>
+            <th class="nc">3</th>
+            <th class="nc">4</th>
+            <th class="nc">5</th>
+            <th class="nc">6</th>
+            <th class="nc">7</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            {% if row['index'] == loop.index0 %}
+              <tr class="row" %}>
+              {% for n in row['cols'] %}
+                {% set col = row['items'][n] %}
+                  {% if col and 'item' in col %}
+                  <td class="col {{ col['cls'] }}"
+                    {% if 'colspan' in col %} colspan="{{ col['colspan'] }}" {% endif %}
+                    {% if 'rowspan' in col %} rowspan="{{ col['rowspan'] }}" {% endif %}
+                  >
+                  {{ col['item'] }}
+                  </td>
+                  {% endif %}
+              {% endfor %}
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc08">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+  <style type="text/css">
+
+    {% include 'docs/css/style.doc08.css' %}
+    {% include 'docs/css/style.docs.css' %}
+
+  </style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

@@ -1,0 +1,198 @@
+
+{% from 'templates.html' import render_date, render_html_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+    
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">ЛИСТ УЧЕТА<br>результатов профессионального психологического отбора</h3>
+
+    <div class="caption">
+
+      <table border="0">
+      <tbody>
+      <tr>
+        <td class="line bottom-border" colspan="3">
+          <span>{{ event }}</span>  
+        </td>
+      </tr><tr>
+        <td class="placeholder" colspan="3">
+          <span>(наименование мероприятия, в ходе которого проводился профессиональный психологический отбор)</span>
+        </td>
+      </tr><tr>
+        <td class="line bottom-border" colspan="3">
+          <span>{{ place }}</span>
+        </td>
+      </tr><tr>
+        <td class="placeholder" colspan="3">
+          <span>(место проведения)</span>
+        </td>
+      </tr><tr>
+        <td class="line person bottom-border"><span>{{ person.full_name }}</span></td>
+        <td class="line space1">&nbsp;</td>
+        <td class="line batteries bottom-border"><span>{{ battery_name }}</span></td>
+      </tr><tr>
+        <td class="placeholder"><span>(фамилия, имя, отчество (при наличии) обследуемого)</span></td>
+        <td class="line space1">&nbsp;</td>
+        <td class="placeholder"><span>(наименование тестовой батареи, методики)</span></td>
+      </tr><tr>
+        <td class="line birthday bottom-border"><span>{{ person.birthday }}</span></td>
+        <td class="line space2">&nbsp;</td>
+        <td class="line bottom-border">{{ render_date(date_event) }}</td>
+      </tr><tr>
+        <td class="placeholder"><span>(дата рождения обследуемого)</span></td>
+        <td class="line space2">&nbsp;</td>
+        <td class="placeholder"><span>(дата обследования)</span></td>
+      </tr>
+      </tbody>
+      </table>
+
+    </div>
+
+    <div class="report">
+
+      <table id="report1" cellspacing="0" cellpadding="0" border="1">
+      <tbody>
+        <tr>
+          <td class="head props" rowspan="2">Сокращенное наименование шкал (методики, тестовых батарей)</td>
+          <td class="head props" rowspan="2">Сокращенное наименование диагностируемого качества</td>
+          <td class="head data v1" colspan="2">Значение показателей шкал (методик, тестовых батарей) без учета социально-психологического изучения (СПИ)</td>
+          <td class="head data v2" colspan="2">Результаты СПИ</td>
+          <td class="head props" rowspan="2">значения показателей с учетом СПИ</td>
+        </tr><tr>
+          <td class="p1">в «сырых» баллах</td>
+          <td class="p2">в стэнах</td>
+          <td class="p3">Выраженные положительные данные</td>
+          <td class="p4">Выраженные отрицательные данные</td>
+        </tr><tr>
+          <td class="nc">1</td>
+          <td class="nc">2</td>
+          <td class="nc">3.1</td>
+          <td class="nc">3.2</td>
+          <td class="nc">4.1</td>
+          <td class="nc">4.2</td>
+          <td class="nc">5</td>
+        </tr>
+          {% for row in groups[0].rows %}
+        <tr>
+          <td class="row props">{{ row.prop1 }}</td>
+          <td class="row props">{{ row.prop2 }}</td>
+          <td class="row p1">{{ row.p3_1 or '' }}</td>
+          <td class="row p2">{{ row.p3_2 or '' }}</td>
+          <td class="row p3">{{ row.p4_1 or '' }}</td>
+          <td class="row p4">{{ row.p4_2 or '' }}</td>
+          <td class="row p5">{{ row.p5 or '' }}</td>
+        </tr>
+          {% endfor %}
+      </tbody>
+      </table>
+
+      <table id="report2" cellspacing="0" cellpadding="0" border="1">
+      <tbody>
+        <tr>
+          <td class="head" colspan="7"><h4 class="title">Заключение о профессиональной психологической пригодности</h4></td>
+        </tr>
+        <tr>
+          <td class="head props" rowspan="3">Наименование показателя</td>
+          <td class="head data" colspan="6">Заключение о профессиональной психологической пригодности</td>
+        </tr><tr>
+          <td class="head data" rowspan="2">к обучению в военно-учебном заведении</td>
+          <td class="head data" colspan="5">к подготовке по военно-учетным специальностям и службе на воинских должностях</td>
+        </tr><tr>
+          <td class="abc">К</td>
+          <td class="abc">С</td>
+          <td class="abc">В</td>
+          <td class="abc">Т</td>
+          <td class="abc">О</td>
+        </tr><tr>
+          <td class="nc">6</td>
+          <td class="nc">7</td>
+          <td class="nc">8.1</td>
+          <td class="nc">8.2</td>
+          <td class="nc">8.3</td>
+          <td class="nc">8.4</td>
+          <td class="nc">8.5</td>
+        </tr>
+          {% for row in groups[1].rows %}
+        <tr>
+          <td class="row props">{{ row.prop3 }}</td>
+          <td class="row props">{{ row.p7 }}</td>
+          <td class="row props">{{ row.p8_1 }}</td>
+          <td class="row props">{{ row.p8_2 }}</td>
+          <td class="row props">{{ row.p8_3 }}</td>
+          <td class="row props">{{ row.p8_4 }}</td>
+          <td class="row props">{{ row.p8_5 }}</td>
+        </tr>
+          {% endfor %}
+      </tbody>
+      </table>
+
+    </div>
+
+    <div class="caption">
+
+      <table border="0">
+      <tbody>
+        <tr>
+          <td class="line bottom-border">
+            <span>{{ doctor or empty_line }}</span>
+          </td>
+        </tr><tr>
+          <td class="placeholder">
+            <span>(наименование должности специалиста по профессиональному психологическому отбору)</span>
+          </td>
+        </tr><tr>
+          <td class="line bottom-border">
+            <span>{{ empty_line }}</span>
+          </td>
+        </tr><tr>
+          <td class="placeholder">
+            <span>(подпись, инициалы имени и фамилия специалиста)</span>
+          </td>
+        </tr><tr>
+          <td class="leftside">{{ render_html_date(date_event) }}</td>
+        </tr>
+      </tbody>
+      </table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" metdod="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc05">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+  <style type="text/css">
+
+    {% include 'docs/css/style.doc05.css' %}
+    {% include 'docs/css/style.docs.css' %}
+
+  </style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

@@ -1,0 +1,110 @@
+
+.report-container { text-align:center; }
+
+.document { text-align:center; border:1px solid #c7c7c7; width: min-content !important; }
+
+.document table { width:100%; }
+
+.report {
+    padding:10px 30px 10px 10px; 
+    margin-right: 10px !important;
+    border:none !important;
+}
+
+.point { margin:0; padding:0; width:100%; }
+.part0, .part1, .part2 { 
+/*    
+    background:url("/static/img/point.png") repeat-x scroll 0 0 #000000;
+    background-repeat: repeat-x;
+    background-color: black;
+*/
+    display: inline-block;
+}
+
+.part0 { width:0px; }
+.part1 { width:0px; }
+.part2 { width:600px; }
+
+.document h2 { text-align:center; }
+
+h3 { font-size:1.2em; font-weight:bold; line-height: 20px; }
+h4 { font-size:1.0em; padding-top: 10px; margin-bottom:10px; }
+
+ .col50 { min-width:50%; width:50%; }
+
+.report_data { font-size:12px; line-height:1.0em; }
+.caption { text-align:center; font-weight:normal; font-size:0.8em !important;  }
+.caption table { width:100%; margin:10px; display:block; }
+.caption .line { white-space:nowrap; border:none; }
+
+.c1 { text-align:left; border-bottom: 1px solid black !important; }
+.d1 dd { 
+    width:100%; 
+    padding: 10px 20px 10px 20px; 
+    text-align: left; 
+    border: 0px solid black; 
+    font-size: 1.6em; 
+    white-space:nowrap; 
+}
+.d1 { 
+    margin-left: -80px; 
+}
+.c2 { text-align:left; }
+.d2 { min-width:320px; text-align: center; }
+.c3 { padding:0 0 8px 5px; text-align: left; }
+.d3 { min-width:10%; text-align: center; }
+.c4 { padding-bottom: 5px; }
+
+.sign { text-align:left; }
+.sign * { display:inline-block; }
+
+.mp {
+    width:100px;
+    text-align:left;
+    padding: 0;
+    margin: 0;
+}
+
+.signer { width:340px; text-align:right; }
+.sign-date { text-align:left; }
+
+.location {}
+
+td.c2 dt { white-space:nowrap; }
+
+.space1 { min-width:30px; }
+
+.head { font-weight:bold; }
+.head dt { width:fit-content; }
+
+.report table { width:100%; margin:10px;  }
+.report th { font-weight:bold; }
+.title { 
+    text-align:center; 
+    padding:20px; 
+    font-size: 1.4em; 
+    line-height: 26px; 
+}
+
+.line { padding-top:20px; padding-bottom:10px; font-size:1.2em;border:0; }
+
+.view-buttons { padding:20px; }
+
+.caption {}
+.placeholder { border:0; }
+
+/* !!! Page parts size align !!! */
+h4 { width:600px; }
+
+@media screen {
+    .document { width:60vw; }
+}
+
+@media screen, print {
+    #report3 th, #report3 td, #report4 th, #report4 td, #report5 th, #report5 td, #report6 th, #report6 td {
+        border-bottom:0pt solid black;
+        border-collapse: separate;
+        border-spacing:0;
+    }
+    .part0, .part1, .part2 { border:0pt solid black !important; height:10px; }
+}

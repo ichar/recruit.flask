@@ -1,0 +1,88 @@
+
+#html-container  { 
+    display:inline-flex;
+    margin:0 auto;
+    padding:0;
+    font:normal 12px Arial;
+    width:100%;
+}
+
+.document { text-align:center; padding:0 20px 0 20px; }
+
+.report-container { 
+    text-align: center;
+    width:100%;
+}
+.report-container { 
+    padding:20px;
+}
+
+.report {
+    height:auto;
+    margin-top: 20px;
+    font-size:0.8em;
+}
+
+.title, .line, .placeholder { width:100%; text-align:center; }
+.caption, #report { width:60vw; text-align:center; }
+.caption table { width:100%; }
+.report table { width:60vw; }
+.report th, .report td { padding:0 5px 0 5px; }
+.report th, .header { font-weight:bold; }
+
+.title {
+    text-align:center !important;
+    font-size: 1.2em;
+}
+
+.header {}
+.bolder { font-weight:bold; }
+
+.space1 { width:40px; padding:10px; }
+
+.footnote { text-align:left; font-size:10px; }
+
+.col { line-height:3px; width:25%; max-width:265px; }
+
+.code, .c2 {}
+
+.c0 {}
+.c1 {}
+.c2 {}
+.c3 {}
+.c4 {}
+
+.head0 {}
+.head2, .head3 {}
+
+.c0, .c1 { text-align:left; }
+.c2, .c3 { white-space: nowrap; }
+.c0, .c2, .c3 { line-height:10px; padding: 3px !important; }
+.ppo1, .ppo2, .header { line-height:12px; }
+
+.together { width:80px !important; }
+
+#report { margin-top:0px; margin-bottom:0px; }
+
+.line { padding-top:0px; }
+.placeholder { 
+    font-size:10px; 
+    max-height: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.report .row { display:revert; }
+
+h3.title { font-size:1.0em; font-weight:bold; }
+
+.view-buttons { padding:20px; }
+
+@media print {
+    .document { padding:0; }
+    .report-container { padding:20px; margin-top:0px; min-height:0; }
+    .caption { width:80vw !important; }
+    .ppo2 { font-size:12px; }
+    .day, .month, .year { font-size:12px; }
+    td.border_bottom { line-height: 16px; font-size: 13px; }
+}

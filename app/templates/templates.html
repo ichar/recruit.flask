@@ -1,0 +1,254 @@
+{%- macro render_login(field) -%}
+
+  <div class="form-group {% if field.flags.required %}required{% endif %}">
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="text" value="">
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_password(field, show_password) -%}
+
+  <div class="form-group {% if field.flags.required %}required{% endif %}">
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+  {%- if show_password %}
+    <div class="input-group password-group">
+      <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="password" value="">
+      <div class="input-group-addon x_pass" for="{{ field.id }}"><span class="glyphicon glyphicon-eye-open" title="{{ _('Show password') }}"></span></div>
+    </div>
+  {%- else %}
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="password" value="">
+  {%- endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_email(field, no_label, with_errors) -%}
+
+  <div class="form-group {% if field.flags.required %}required{% endif %}">
+  {%- if not no_label -%}
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+  {%- endif %}
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="text" value="">
+  {%- if with_errors -%}
+    {% for error in field.errors %}
+      <span style="color:red;">{{ error }}</span>
+    {% endfor %}
+  {%- endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_input(field, no_label, with_errors) -%}
+
+    <div class="form-group {% if field.flags.required %}required{% endif %}">
+  {%- if not no_label -%}
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+  {%- endif %}
+    <input class="form-control" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} type="text" value="">
+  {%- if with_errors -%}
+    {% for error in field.errors %}
+      <span style="color:red;">{{ error }}</span>
+    {% endfor %}
+  {%- endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_role(field) -%}
+
+    <div class="form-group role {% if field.flags.required %}required{% endif %}">
+  {%- if not no_label -%}
+    <label class="control-label" for="{{ field.id }}">{{ field.label.text|safe }}:</label>
+  {%- endif %}
+  <select class="popup" id="{{ field.id }}" name="{{ field.name }}" {% if field.flags.required %}required{% endif %} title="{{ title }}">
+  {% for value in field.choices -%}
+    <option value="{{ value[0] }}">{{ value[1] }}</option>
+  {%- endfor %}
+  </select>
+  {%- if with_errors -%}
+    {% for error in field.errors %}
+      <span style="color:red;">{{ error }}</span>
+    {% endfor %}
+  {%- endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_submit(field, title) -%}
+
+  <input class="btn btn-default" id="{{ field.id }}" name="{{ field.name }}" type="submit" value="{{ title or field.label.text|safe }}">
+
+{%- endmacro -%}
+
+{%- macro render_field(field) %}
+
+  <dt>{{ field.label }}{%- if field.flags.required -%}<span class="mandatory">*</span>{%- endif -%}</dt>
+  <dd>{{ field(**kwargs)|safe }}</dd>
+  
+  {%- if field.errors %}
+  <ul class=errors>
+    {%- for error in field.errors %}
+    <li>{{ field.gettext(error) }}</li>
+    {% endfor -%}
+  </ul>
+  {%- endif %}
+  <br>
+
+{%- endmacro %}
+
+{%- macro render_select(id, name, values, disabled) %}
+
+  <select class="popup" id="{{ id }}" name="{{ name }}" {{ disabled }}>
+  {% for value in values -%}
+    <option value="{{ value }}">{{ value }}</option>
+  {%- endfor %}
+  </select>
+
+{%- endmacro %}
+
+{%- macro render_combo(id, name, values, disabled, title) %}
+
+  <select class="popup" id="{{ id }}" name="{{ name }}" {{ disabled }} title="{{ title }}">
+  {% for value in values -%}
+    <option value="{{ value[0] }}">{{ value[1] }}</option>
+  {%- endfor %}
+  </select>
+
+{%- endmacro %}
+
+{%- macro render_selected_combo(id, name, values, selected, disabled, title, keys, mode ) %}
+{#
+    Macro for draw select-control, for instance, persons and other.
+
+    Arguments (python):
+      id  -- str, id of the control
+      name  -- str, name of control
+      values -- iterable(list or tuple), items for select options value, used together with keys[0]
+      selected -- str, selected value
+      disabled -- str, if control disabled: 'disabled' or ''
+      title -- str, title of the control
+      keys -- list, keys for get option values: (<value>, <html>)
+      mode -- int, mode for 'MakeFilterSubmit' onchange-event javascript handler (should be present in page.js controller)
+
+  Usage example:
+    {{ render_selected_combo('person','person', persons, args['person_uid'], 'disabled', 'Призывник', ('uid', 'short_name'), 2) }}
+#}
+
+  <select class="field popup combo" id="{{ id }}" name="{{ name }}" {{ disabled }} title="{{ title }} 
+    onchange="javascript:MakeFilterSubmit({{ mode }});">
+  {% for value in values -%}
+    <option value="{{ value|attr(keys[0]) }}" 
+      {% if value|attr(keys[0]) == selected %}selected{% endif %}>{{ value|attr(keys[1]) }}
+    </option>
+  {%- endfor %}
+  </select>
+
+{%- endmacro %}
+
+{%- macro render_selected_date(id, name, value, mode) -%}
+
+    <input class="field popup date" type="date" id="{{ id }}" name="{{ name }}" value="{{ value }}" 
+     onchange="javascript:MakeFilterSubmit({{ mode }});" placeholder="DD-MM-YYYY" data-date-format="DD MM YYYY">
+
+{%- endmacro %}
+
+{%- macro render_html_date(field) -%}
+
+  <div class="form-group">
+    <table class="date" border="0">
+    <tr>
+      <td class="day bottom-border"><span>{{ field.day|safe }}</span></td>
+      <td class="month bottom-border"><span>{{ field.month|safe }}</span></td>
+      <td class="year bottom-border"><span>{{ field.year|safe }}</span></td>
+    </tr>
+    </table>
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_date(field) -%}
+
+  <div class="form-group date">
+    <span>{{ field.day|safe }} {{ field.month|safe }} {{ field.year|safe }}</span>
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_empty_date() -%}
+
+  <div class="form-group">
+    <table class="date" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td class="sd"><span>«</span></td>
+      <td class="sday bottom-border"><span>&nbsp;&nbsp;&nbsp;</span></td>
+      <td class="sd"><span>»</span></td>
+      <td class="smonth bottom-border"><span>&nbsp;</span></td>
+      <td class="sd"><span>20</span></td>
+      <td class="syear bottom-border"><span> &nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td class="sd"><span> г.</span></td>
+    </tr>
+    </table>
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_selected_checkboxes(id, name, items, selected, disabled, title, keys, mode, delimeter) -%}
+
+  <div class="form-group">
+
+  {%- for item in items -%}
+    {%- set item_index = item|attr(keys[0]) -%}
+    {%- set item_sindex = delimeter+item_index+delimeter -%}
+    {%- set item_id = [id, item_index]|join('_') -%}
+    {%- set item_value = item|attr(keys[1]) -%}
+    {%- set item_title = [title, item|attr(keys[2])]|join('') -%}
+    <label class="field popup {{ id }}-item" for="{{ item_id }}">
+      <input type="checkbox" class="field popup check check-{{ id }}" id="{{ item_id }}" name="{{ name }}" value="{{ item_index }}" 
+        {% if selected and item_index in selected %}checked{% endif %}>
+          <span title="{{ item_title }}">{{ loop.index0 == 0 and item_title or item_value }}</span>
+    </label>
+  {%- endfor -%}
+
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_tree_item(id, name, item, selected, closed, title, keys, mode, delimeter) -%}
+
+    {%- set item_index = item|attr(keys[0]) -%}
+    {%- set item_sindex = delimeter+item_index+delimeter -%}
+    {%- set item_id = [id, item_index]|join('_') -%}
+    {%- set item_value = item|attr(keys[1]) -%}
+    {%- set item_title = [title, item|attr(keys[2])]|join('') -%}
+    <label class="field popup {{ id }}-item" for="{{ item_id }}">
+      <div class="msign"><span class="sign" id="{{ item_id }}-sign">{{ closed }}</span></div>
+      <input type="checkbox" class="field popup check check-{{ id }}" id="{{ item_id }}" name="{{ name }}" value="{{ item_index }}" 
+        {% if selected and item_sindex in selected %}checked{% endif %}>
+          <span title="{{ item.is_child}}: {{ item.level }} {{ item_title }} {{ item.index }}"> {{ item_value }}</span>
+    </label>
+
+{%- endmacro -%}
+
+{%- macro render_rows(rows) -%}
+        
+    {% for row in rows %}
+      {% if row['index'] == loop.index0 %}
+        <tr class="row" %}>
+        {% for n in row['cols'] %}
+          {% set col = row['items'][n] %}
+            {% if col and 'item' in col %}
+            <td class="col {{ col['cls'] }}"
+              {% if 'colspan' in col %} colspan="{{ col['colspan'] }}" {% endif %}
+              {% if 'rowspan' in col %} rowspan="{{ col['rowspan'] }}" {% endif %}
+            >
+            {{ col['item'] }}
+            </td>
+            {% endif %}
+        {% endfor %}
+        </tr>
+      {% endif %}
+    {% endfor %}
+
+{%- endmacro -%}
+

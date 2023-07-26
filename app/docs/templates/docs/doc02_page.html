@@ -1,0 +1,114 @@
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+    
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">Лист результатов социально-психологического изучения</h3>
+
+    <div class="caption">
+
+    <table border="0">
+    <tr>
+      <td class="line head c1"><dt>Фамилия, имя, отчество:</dt></td>
+      <td class="line data d1 bottom-border" colspan="4"><dd class="underline">{{ person.name }}</dd></td>
+    </tr><tr>
+      <td class="line head c2"><dt>Дата рождения:</dt></td>
+      <td class="line data d2 bottom-border"><dd class="underline">{{ person.birthday }}</dd></td>
+      <td class="line space1">&nbsp;</td>
+      <td class="line head c3"><dt>Дата обследования:</dt></td>
+      <td class="line data d3 bottom-border"><dd class="underline">{{ report_date }}</dd></td>
+    </tr>
+    </table>
+
+    </div>
+
+    <div class="report">
+
+    <table id="report" cellspacing="0" cellpadding="0" border="1">
+    <tr>
+      <td class="head" colspan="4"><h4 class="title">Результаты анализа документов и беседы</h4></td>
+    </tr>
+    <tr>
+      <td class="head np" rowspan="2">№ п/п</td>
+      <td class="head props" rowspan="2">Оцениваемые признаки и свойства</td>
+      <td class="head data" colspan="2">Полученные данные</td>
+    </tr><tr>
+      <td class="m1">+</td>
+      <td class="m2">-</td>
+    </tr>
+      {% set group = groups[0] %}
+    {#<tr><td colspan="4"><span class="group0"> {{ group.caption }}</span></td></tr>#}
+      {% for subgroup in group.subgroups %}
+    <tr><td colspan="4"><span class="subgroup"> {{ subgroup.caption }}</span></td></tr>
+        {% for row in subgroup.rows %}
+    <tr>
+      <td class="row np">{{ row.index }}.</td>
+      <td class="row props">{{ row.prop }}</td>
+      <td class="row marker">{{ row.plus and marker or '' }}</td>
+      <td class="row marker">{{ row.minus and marker or ''  }}</td>
+    </tr>
+        {% endfor %}
+      {% endfor %}
+    <tr>
+      <td class="head" colspan="4"><h4 class="title">Результаты наблюдения</h4></td>
+    </tr>
+    <tr>
+      <td class="head np">№ п/п</td>
+      <td class="head props">Оцениваемые признаки и свойства</td>
+      <td class="head data" colspan="2">Примечание</td>
+    </tr><tr>
+      {% set group = groups[1] %}
+    {#<tr><td colspan="4"><span class="group1"> {{ group.caption }}</span></td></tr>#}
+      {% for subgroup in group.subgroups %}
+    <tr><td colspan="4"><span class="subgroup"> {{ subgroup.caption }}</span></td></tr>
+        {% for row in subgroup.rows %}
+    <tr>
+      <td class="row">{{ row.index }}.</td>
+      <td class="row props">{{ row.prop }}</td>
+      <td class="row data" colspan="2">{{ row.info }}</td>
+    </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody></table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc02">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+<style type="text/css">
+
+  {% include 'docs/css/style.doc02.css' %}
+  {% include 'docs/css/style.docs.css' %}
+
+</style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

@@ -1,0 +1,105 @@
+
+{% from 'templates.html' import render_html_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">Список<br>лиц, имеющих склонность к девиантному поведению<br>и(или) неудовлетворительную нервно-психологическую устойчивость</h3>
+
+    <div class="report">
+
+      <table id="report" border="1">
+        <thead>
+          <tr>
+            <th class="np">№ п/п</th>
+            <th class="person">Фамилия, инициалы, дата рождения</th>
+            <th class="date">Дата обследования</th>
+            <th class="p1">Значение показателя склонности к девиантному поведению</th>
+            <th class="p2">Значение показателя нервно-психической устойчивости</th>
+            <th class="note">Отметка врача-психиатра об учёте сведений</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td class="row">{{ loop.index }}</td>
+            <td class="row person">{{ row.person }}<br>{{ row.birthday }}</td>
+            <td class="row">{{ row.date }}</td>
+            <td class="row">{{ row.p1 }}</td>
+            <td class="row">{{ row.p2 }}</td>
+            <td class="row">{{ row.note }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="caption">
+
+      <table border="0">
+      <tbody>
+        <tr>
+          <td class="line bottom-border">
+            <span>{{ doctor or empty_line }}</span>
+          </td>
+        </tr><tr>
+          <td class="placeholder">
+            <span>(наименование должности специалиста по профессиональному психологическому отбору, подпись, инициал имени и фамилия специалиста)</span>
+          </td>
+        </tr><tr>
+          <td class="line bottom-border">
+            <span>{{ empty_line }}</span>
+          </td>
+        </tr><tr>
+          <td class="placeholder">
+            <span>(подпись, инициалы имени и фамилия специалиста)</span>
+          </td>
+        </tr><tr>
+          <td class="leftside">{{ render_html_date(date_event) }}</td>
+        </tr>
+      </tbody>
+      </table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc03">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="region" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+  <style type="text/css">
+
+    {% include 'docs/css/style.doc03.css' %}
+    {% include 'docs/css/style.docs.css' %}
+
+  </style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

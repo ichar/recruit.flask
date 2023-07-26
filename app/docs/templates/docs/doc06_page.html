@@ -1,0 +1,174 @@
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+    <h3 class="title">ВЕДОМОСТЬ<br>результатов профессионального психологического отбора</h3>
+
+    <div class="caption">
+
+    <table border="0">
+    <tr>
+      <td class="line bottom-border">
+        <span>
+          <span>{{ event }}</span>  
+        </span>
+      </td>
+    </tr><tr>
+      <td class="placeholder">
+        <span>(наименование мероприятия, в ходе которого проводился профессиональный психологический отбор)</span>
+      </td>
+    </tr><tr>
+      <td class="line bottom-border">
+        <span>{{ place }} {{ period}}</span>
+      </td>
+    </tr><tr>
+      <td class="placeholder">
+        <span>(место и период проведения мероприятия)</span>
+      </td>
+    </tr>
+    </table>
+
+    </div>
+
+    <div class="report">
+
+    <table id="report" border="1">
+    <thead>
+    <tr>
+      <th class="np" rowspan="2">№ п/п</th>
+      <th class="person" rowspan="2">Фамилия, инициалы и дата рождения лица, прошедшего профессиональный психологический отбор</th>
+      <th class="date" rowspan="2">Дата проведения психологического обследования</th>
+      <th class="ippr" colspan="11">Результаты психологического обследования</th>
+      <th class="c3" colspan="6">Заключение о профессиональной психологической пригодности к обучению в военно-учебном заведении, подготовке по военно-учетным специальностям и службе на воинских должностях</th>
+      <th class="c2" rowspan="2">Примечание</th>
+    </tr><tr>
+      <th class="abc">ОПС</th>
+      <th class="abc">НПУ</th>
+      <th class="abc">НВС</th>
+      <th class="abc">СДП</th>
+      <th class="abc">К</th>
+      <th class="abc">С</th>
+      <th class="abc">В</th>
+      <th class="abc">Т</th>
+      <th class="abc">О</th>
+      <th class="abc">СЭ</th>
+      <th class="abc">НПУА</th>
+      
+      <th class="abc">Вуз</th>
+      <th class="abc">К</th>
+      <th class="abc">С</th>
+      <th class="abc">В</th>
+      <th class="abc">Т</th>
+      <th class="abc">О</th>
+    </tr><tr>
+      <th class="nc">1</th>
+      <th class="nc">2</th>
+      <th class="nc">3</th>
+      <th class="nc">4.1</th>
+      <th class="nc">4.2</th>
+      <th class="nc">4.3</th>
+      <th class="nc">4.4</th>
+      <th class="nc">4.5</th>
+      <th class="nc">4.6</th>
+      <th class="nc">4.7</th>
+      <th class="nc">4.8</th>
+      <th class="nc">4.9</th>
+      <th class="nc">4.10</th>
+      <th class="nc">4.11</th>
+      <th class="nc">5.1</th>
+      <th class="nc">5.2</th>
+      <th class="nc">5.3</th>
+      <th class="nc">5.4</th>
+      <th class="nc">5.5</th>
+      <th class="nc">5.6</th>
+      <th class="nc">6</th>
+    </tr></thead><tbody>
+    {% for row in rows %}
+    <tr>
+      <td class="row">{{ loop.index }}</td>
+      <td class="row person">{{ row.person }}&nbsp;{{ row.birthday }}</td>
+      <td class="row">{{ row.date }}</td>
+
+      <td class="row">{{ row.OPS }}</td>
+      <td class="row">{{ row.NPU }}</td>
+      <td class="row">{{ row.NVS }}</td>
+      <td class="row">{{ row.SDP }}</td>
+
+      <td class="row">{{ row.K }}</td>
+      <td class="row">{{ row.C }}</td>
+      <td class="row">{{ row.B }}</td>
+      <td class="row">{{ row.T }}</td>
+      <td class="row">{{ row.O }}</td>
+      
+      <td class="row">{{ row.SE }}</td>
+      <td class="row">{{ row.NPUA }}</td>
+      
+      <td class="row">{{ row.VUZ }}</td>
+      <td class="row">{{ row.KX }}</td>
+      <td class="row">{{ row.CX }}</td>
+      <td class="row">{{ row.BX }}</td>
+      <td class="row">{{ row.TX }}</td>
+      <td class="row">{{ row.OX }}</td>
+      
+      <td class="row status">{{ row.info }}</td>
+    </tr>
+    {% endfor %}
+    </tbody></table>
+
+    </div>
+
+    <div class="caption">
+
+    <table border="0">
+    <tr>
+      <td class="line bottom-border">
+        <span>{{ expert }}</span>
+      </td>
+    </tr><tr>
+      <td class="placeholder">
+        <span>(наименование должности специалиста по профессиональному психологическому отбору, подпись, инициал имени и фамилия специалиста)</span>
+      <td>
+    </tr><tr></table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc06">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+<style type="text/css">
+
+  {% include 'docs/css/style.doc06.css' %}
+  {% include 'docs/css/style.docs.css' %}
+
+</style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}

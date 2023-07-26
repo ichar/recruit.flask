@@ -1,0 +1,96 @@
+
+{% from 'templates.html' import render_html_date %}
+
+<script type="text/javascript">
+
+  orientation = '{{ orientation }}';
+
+</script>
+
+<div class="page-header">
+  <div class="view-buttons" id="form_buttons">
+     <button class="btn btn-secondary" id="page_back">{{ g.maketext('Docs Back') }}</button>
+     <button class="btn btn-secondary" id="page_print">{{ g.maketext('Docs Print') }}</button>
+  </div>
+</div>
+
+<div class="report-container" id="report_container">
+  <div class="document">
+
+    <h2 class="print_mode"> {{ print_mode }}</h2>
+
+    <div class="report">
+
+      <table id="report" border="1">
+        <thead>
+          <tr>
+            <th class="item region" rowspan="4">Субъект РФ</th>
+            <th class="item title" colspan="14">
+              СВЕДЕНИЯ<br>об образовательных организациях и учебных пунктах, осуществляющих подготовку граждан<br>по основам военной службы, и состоянии их учебно-материальной базы
+            </th>
+          </tr><tr>
+            <th class="item up" colspan="3">Количество образовательных<br>организаций</th>
+            <th class="f3 down" rowspan="3">Количество учебных пунктов</th>
+            <th class="item up" colspan="10">Обеспеченность учебно-материальной базы</th>
+          </tr><tr>
+            <th class="fact down" rowspan="2">Всего</th>
+            <th class="item up" colspan="2">В том числе</th>
+            <th class="p1 down" rowspan="2">Полный комплекс УМБ</th>
+            <th class="c1 down" rowspan="2">%</th>
+            <th class="p2 down" rowspan="2">Предметный кабинет</th>
+            <th class="c2 down" rowspan="2">%</th>
+            <th class="p3 down" rowspan="2">Тир</th>
+            <th class="c3 down" rowspan="2">%</th>
+            <th class="p4 down" rowspan="2">Спортгородок</th>
+            <th class="c4 down" rowspan="2">%</th>
+            <th class="p5 down" rowspan="2">Элементы полосы<br>препятствий</th>
+            <th class="c5 down" rowspan="2">%</th>
+          </tr><tr>
+            <th class="f1 down">образовательные<br>организации среднего<br>общего образования</th>
+            <th class="f2 down">образовательные<br>организации среднего<br>профессионального<br>образования</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+              <tr class="row">
+              {% for col in cols %}
+                {% set value = row|attr(col) %}
+                {% set css = row.css %}
+                <td class="col {{ col }} {{ css }}">
+                  <span>{{ value }}</span>
+                </td>
+              {% endfor %}
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+    <form action="{{ base }}" id="command-form" method="post" onSubmit="return false;">
+      <input type="hidden" id="page" name="page" value="{{ mode }}">
+      <input type="hidden" id="reporttype" name="reporttype" value="doc15">
+      <input type="hidden" id="date_from" value="{{ args['date_from'][1] }}">
+      <input type="hidden" id="date_to" value="{{ args['date_to'][1] }}">
+      <input type="hidden" id="person" value="{{ args['person_uid'] }}">
+      <input type="hidden" id="specialities" name ="speciality_index" value="{{ args['speciality_index'] }}">
+      <input type="hidden" id="regions" name ="region_index" value="{{ args['region_index'] }}">
+    </form>
+
+  </div>
+
+  <style type="text/css">
+
+    {% include 'docs/css/style.doc15.css' %}
+    {% include 'docs/css/style.docs.css' %}
+
+  </style>
+
+</div>
+
+{% if default_submit_mode == 3 %}
+
+  {% include 'docs/docs_init.html' %}
+
+{% endif %}
+sssss
