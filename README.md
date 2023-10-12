@@ -39,8 +39,8 @@
 
 - Обновление базы данных:
 
-    flask database update
-    flask database update_fias
+    - flask database update
+    - flask database update_fias
 
 - Для работы с pdf (html->pdf) установить:
 
